@@ -64,6 +64,14 @@
         <p>On mobile, press and hold a todo entry to remove it.</p>
       </modal>
 
+      <modal header-text="Are you sure?" :visible="modals.confirmation" @close="cancelItemDeletion">
+        <p>Are you sure you want to delete this task?</p>
+        <div class="f j-end a-center pv-16">
+          <button @click="confirmItemDeletion" class="Button">yes</button>
+          <button @click="cancelItemDeletion" class="Button">no</button>          
+        </div>
+      </modal>
+
     </main>
     
     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>

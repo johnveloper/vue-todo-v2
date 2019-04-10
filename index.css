@@ -1,3 +1,8 @@
+.f { display: flex; }
+.j-end { justify-content: flex-end; }
+.a-center { align-items: center; }
+.pv-16 { padding-top: 16px; padding-bottom: 16px; }
+
 body {
   margin: 0;
   padding: 0;
@@ -155,3 +160,15 @@ body {
 .Rect--orange { background: #FF5722; }
 .Rect--black { background: #222222; }
 .Rect--purple { background: #311B92; width: 22px; height: 22px; border: 1px solid #FFFFFF; }
+
+.Button {
+  outline: 0;
+  border: 0;
+  border: 2px solid white;
+  font-weight: 500;
+  text-transform: uppercase;
+  color: #FFFFFF;
+  background: rgba(0,0,0,0);
+  padding: 8px 16px;
+  margin-left: 8px;
+}

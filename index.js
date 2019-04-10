@@ -68,7 +68,8 @@ let app = new Vue({
     items: [],
     modals: {
       settings: false,
-      help: false 
+      help: false,
+      confirmation: null
     },
     settings: {
       moveToBottom: {
@@ -151,8 +152,15 @@ let app = new Vue({
     },
     handleItemTouchStart: function(id) {
       this.timeout = setTimeout(function() {
-        app.removeItemAt(app.findIndexOfItemWithId(id));
+        app.modals.confirmation = id;
       }, 500);
+    },
+    confirmItemDeletion: function() {
+      app.removeItemAt(app.findIndexOfItemWithId(app.modals.confirmation));
+      app.modals.confirmation = null;
+    },
+    cancelItemDeletion: function() {
+      app.modals.confirmation = null;
     },
     handleItemTouchEnd: function() {
       clearTimeout(this.timeout);
