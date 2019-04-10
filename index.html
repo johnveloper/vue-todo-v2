@@ -39,9 +39,7 @@
         @touchend="handleItemTouchEnd"
         class="Item"
         :class="{ 'Item--done': item.done, 'Item--rounded': settings.itemsRounded.state }"
-      > 
-        {{ item.text }}
-      </div>
+      >{{ item.text }}</div>
 
       <modal header-text="Settings" :visible="modals.settings" @close="toggleModal('settings')">
         
