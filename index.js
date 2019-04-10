@@ -36,10 +36,22 @@ let app = new Vue({
       help: false 
     },
     settings: {
-      moveToBottom: true,
-      moveToTop: true,
-      inputRounded: false,
-      itemsRounded: false
+      moveToBottom: {
+        label: 'Move finished tasks to the bottom',
+        state: true
+      },
+      moveToTop: {
+        label: 'Move unfinished tasks to the top',
+        state: true
+      },
+      inputRounded: {
+        label: 'Rounded input corners',
+        state: false
+      },
+      itemsRounded: {
+        label: 'Rounded items corners',
+        state: false
+      },
     },
     timeout: null
   },
@@ -60,9 +72,9 @@ let app = new Vue({
         this.removeItemAt(index);
       } else {
         let item = this.toggleItemAt(index);
-        if (item.done && this.settings.moveToBottom) {
+        if (item.done && this.settings.moveToBottom.state) {
           this.items.push(this.items.splice(index, 1)[0]);
-        } else if (!item.done && this.settings.moveToTop) {
+        } else if (!item.done && this.settings.moveToTop.state) {
           this.items.unshift(this.items.splice(index, 1)[0]);
         }
       }
@@ -84,7 +96,7 @@ let app = new Vue({
       this.modals[modal] = !this.modals[modal];
     },
     toggleSetting: function(setting) {
-      this.settings[setting] = !this.settings[setting];
+      this.settings[setting].state = !this.settings[setting].state;
     },
     setTheme: function(color) {
       document.body.style.backgroundColor = color;

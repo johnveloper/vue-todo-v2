@@ -26,7 +26,7 @@
         v-model="text"
         @keydown.enter="addItem" 
         class="Input"
-        :class="{ 'Input--rounded': settings.inputRounded }"
+        :class="{ 'Input--rounded': settings.inputRounded.state }"
         placeholder="Type here..." 
         spellcheck="false"
         autocomplete="off"
@@ -38,24 +38,19 @@
         @touchstart="handleItemTouchStart(item.id)"
         @touchend="handleItemTouchEnd"
         class="Item"
-        :class="{ 'Item--done': item.done, 'Item--rounded': settings.itemsRounded }"
+        :class="{ 'Item--done': item.done, 'Item--rounded': settings.itemsRounded.state }"
       > 
         {{ item.text }}
       </div>
 
       <modal header-text="Settings" :visible="modals.settings" @close="toggleModal('settings')">
-        <setting :checked="settings.moveToBottom" @toggle="toggleSetting('moveToBottom')">
-          Move finished tasks to the bottom
-        </setting>
-        <setting :checked="settings.moveToTop" @toggle="toggleSetting('moveToTop')">
-          Move unfinished tasks to the top
-        </setting>
-        <setting :checked="settings.inputRounded" @toggle="toggleSetting('inputRounded')">
-          Rounded input corners
-        </setting>
-        <setting :checked="settings.itemsRounded" @toggle="toggleSetting('itemsRounded')">
-          Rounded items corners
-        </setting>
+        
+        <setting 
+          v-for="(setting, settingKey) in settings"
+          :checked="settings[settingKey].state"
+          @toggle="toggleSetting(settingKey)"
+        >{{ setting.label }}</setting>
+
         <div class="Modal-row">Theme: 
           <div @click="setTheme('#E91E63')" class="Rect Rect--pink"></div>
           <div @click="setTheme('#009688')" class="Rect Rect--teal"></div>
@@ -65,6 +60,7 @@
           <div @click="setTheme('#222222')" class="Rect Rect--black"></div>
           <div @click="setTheme('#311B92')" class="Rect Rect--purple"></div>
         </div>
+        
       </modal>
 
       <modal header-text="Help" :visible="modals.help" @close="toggleModal('help')">
