@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>VueTodo</title>
+    <link rel="stylesheet" href="index.css">
+  </head>
+
+  <body>
+
+    <main id="app" class="Wrapper">
+
+      <header class="Header">
+        <h1>VueTodo V1</h1>
+        <div class="Header-menu">
+          <div @click="toggleModal('help')" class="Header-item">HELP</div>
+          <div @click="toggleModal('settings')" class="Header-item">SETTINGS</div>
+          <a href="https://github.com/johnveloper/vue-todo" class="Header-item">GITHUB</a>
+        </div>
+      </header>
+
+      <input autofocus novalidate
+        v-model="text"
+        @keydown.enter="addItem" 
+        class="Input"
+        :class="{ 'Input--rounded': settings.inputRounded }"
+        placeholder="Type here..." 
+        spellcheck="false"
+        autocomplete="off"
+      >
+
+      <div 
+        v-for="item in items"
+        @click="handleItemTap(item.id, $event)"
+        @touchstart="handleItemTouchStart(item.id)"
+        @touchend="handleItemTouchEnd"
+        class="Item"
+        :class="{ 'Item--done': item.done, 'Item--rounded': settings.itemsRounded }"
+      > 
+        {{ item.text }}
+      </div>
+
+      <div class="Modal" v-if="modals.settings" @click.self="toggleModal('settings')">
+        <div class="Modal-content">
+          <div class="Modal-header">Settings</div>
+          <div class="Modal-row">
+            <div 
+              class="Modal-switch"
+              :class="{ 'Modal-switch--active': settings.moveToBottom }"
+              @click="toggleSetting('moveToBottom')"
+            ></div>
+            Move finished tasks to the bottom
+          </div>
+          <div class="Modal-row">
+            <div 
+              class="Modal-switch"
+              :class="{ 'Modal-switch--active': settings.moveToTop }"
+              @click="toggleSetting('moveToTop')"
+            ></div>
+            Move unfinished tasks to the top
+          </div>
+          <div class="Modal-row">
+            <div 
+              class="Modal-switch"
+              :class="{ 'Modal-switch--active': settings.inputRounded }"
+              @click="toggleSetting('inputRounded')"
+            ></div>
+            Rounded input corners
+          </div>
+          <div class="Modal-row">
+            <div 
+              class="Modal-switch"
+              :class="{ 'Modal-switch--active': settings.itemsRounded }"
+              @click="toggleSetting('itemsRounded')"
+            ></div>
+            Rounded items corners
+          </div>
+          <div class="Modal-row">
+            Theme: 
+            <div @click="setTheme('#E91E63')" class="Rect Rect--pink"></div>
+            <div @click="setTheme('#009688')" class="Rect Rect--teal"></div>
+            <div @click="setTheme('#8BC34A')" class="Rect Rect--green"></div>
+            <div @click="setTheme('#FFC107')" class="Rect Rect--amber"></div>
+            <div @click="setTheme('#FF5722')" class="Rect Rect--orange"></div>
+            <div @click="setTheme('#222222')" class="Rect Rect--black"></div>
+            <div @click="setTheme('#311B92')" class="Rect Rect--purple"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="Modal" v-if="modals.help" @click.self="toggleModal('help')">
+        <div class="Modal-content">
+          <div class="Modal-header">Help</div>
+          <p>Tap on todo entry to toggle its completion status.</p>
+          <p>Press shift and tap at the todo entry to remove it.</p>
+          <p>On mobile, press and hold a todo entry to remove it.</p>
+        </div>
+      </div>
+
+    </main>
+    
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.6.10/dist/vue.js"></script>
+    <script src="index.js"></script>
+  </body>
+
+</html>
