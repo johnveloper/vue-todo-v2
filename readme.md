@@ -4,4 +4,6 @@ Functionality the same as as in [VueTodo V1](https://github.com/johnveloper/vue-
 ## Improvements from V1
 - Better, cleaner source thanks to utilizing Vue components,
 - Removed 2 too bright themes,
-- Black theme is default now.
+- Black theme is default now,
+- When you hover on item holding shift, the item turns red (delete item with shift + click),
+- Item deletion confirmation on mobile (when deleting with tapping and holding for 500ms).
