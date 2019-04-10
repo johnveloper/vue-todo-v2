@@ -47,6 +47,7 @@
           v-for="(setting, settingKey) in settings"
           :checked="settings[settingKey].state"
           @toggle="toggleSetting(settingKey)"
+          key="settingKey"
         >{{ setting.label }}</setting>
 
         <div class="Modal-row">Theme: 
