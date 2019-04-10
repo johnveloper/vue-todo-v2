@@ -34,7 +34,11 @@
         @touchstart="handleItemTouchStart(item.id)"
         @touchend="handleItemTouchEnd"
         class="Item"
-        :class="{ 'Item--done': item.done, 'Item--rounded': settings.itemsRounded.state }"
+        :class="{ 
+          'Item--done': item.done, 
+          'Item--rounded': settings.itemsRounded.state,
+          'Item--deletable': shiftPressed
+        }"
       >{{ item.text }}</div>
 
       <modal header-text="Settings" :visible="modals.settings" @close="toggleModal('settings')">

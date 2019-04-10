@@ -71,7 +71,20 @@ let app = new Vue({
         state: true
       },
     },
-    timeout: null
+    timeout: null,
+    shiftPressed: false
+  },
+  mounted: function() {
+    window.addEventListener('keydown', function(event) {
+      if (event.key == 'Shift') {
+        app.shiftPressed = true;
+      }
+    }); 
+    window.addEventListener('keyup', function(event) {
+      if (event.key == 'Shift') {
+        app.shiftPressed = false;
+      }
+    });
   },
   methods: {
     addItem: function() {
@@ -126,6 +139,16 @@ let app = new Vue({
     },
     handleItemTouchEnd: function() {
       clearTimeout(this.timeout);
+    },
+    handleItemMouseOver: function(event) {
+      event.target.style.backgroundColor = 'red';
+    },
+    handleItemShift: function(event) {
+      alert(event);
+      event.target.style.backgroundColor = 'red';
+    },
+    handleItemMouseLeave: function(event) {
+      event.target.style.backgroundColor = 'rgba(0,0,0,0)';
     }
   }
 });

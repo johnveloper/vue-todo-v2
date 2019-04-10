@@ -56,6 +56,10 @@ body {
   opacity: 0.52;
 }
 
+.Item--deletable:hover {
+  background: red;
+}
+
 @media (min-width: 501px) {
   .Item:hover {
     cursor: pointer;
