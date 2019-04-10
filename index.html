@@ -43,62 +43,56 @@
         {{ item.text }}
       </div>
 
-      <div class="Modal" v-if="modals.settings" @click.self="toggleModal('settings')">
-        <div class="Modal-content">
-          <div class="Modal-header">Settings</div>
-          <div class="Modal-row">
-            <div 
-              class="Modal-switch"
-              :class="{ 'Modal-switch--active': settings.moveToBottom }"
-              @click="toggleSetting('moveToBottom')"
-            ></div>
-            Move finished tasks to the bottom
-          </div>
-          <div class="Modal-row">
-            <div 
-              class="Modal-switch"
-              :class="{ 'Modal-switch--active': settings.moveToTop }"
-              @click="toggleSetting('moveToTop')"
-            ></div>
-            Move unfinished tasks to the top
-          </div>
-          <div class="Modal-row">
-            <div 
-              class="Modal-switch"
-              :class="{ 'Modal-switch--active': settings.inputRounded }"
-              @click="toggleSetting('inputRounded')"
-            ></div>
-            Rounded input corners
-          </div>
-          <div class="Modal-row">
-            <div 
-              class="Modal-switch"
-              :class="{ 'Modal-switch--active': settings.itemsRounded }"
-              @click="toggleSetting('itemsRounded')"
-            ></div>
-            Rounded items corners
-          </div>
-          <div class="Modal-row">
-            Theme: 
-            <div @click="setTheme('#E91E63')" class="Rect Rect--pink"></div>
-            <div @click="setTheme('#009688')" class="Rect Rect--teal"></div>
-            <div @click="setTheme('#8BC34A')" class="Rect Rect--green"></div>
-            <div @click="setTheme('#FFC107')" class="Rect Rect--amber"></div>
-            <div @click="setTheme('#FF5722')" class="Rect Rect--orange"></div>
-            <div @click="setTheme('#222222')" class="Rect Rect--black"></div>
-            <div @click="setTheme('#311B92')" class="Rect Rect--purple"></div>
-          </div>
+      <modal header-text="Settings" :visible="modals.settings" @close="toggleModal('settings')">
+        <div class="Modal-row">
+          <div 
+            class="Modal-switch"
+            :class="{ 'Modal-switch--active': settings.moveToBottom }"
+            @click="toggleSetting('moveToBottom')"
+          ></div>
+          Move finished tasks to the bottom
         </div>
-      </div>
-
-      <div class="Modal" v-if="modals.help" @click.self="toggleModal('help')">
-        <div class="Modal-content">
-          <div class="Modal-header">Help</div>
-          <p>Tap on todo entry to toggle its completion status.</p>
-          <p>Press shift and tap at the todo entry to remove it.</p>
-          <p>On mobile, press and hold a todo entry to remove it.</p>
+        <div class="Modal-row">
+          <div 
+            class="Modal-switch"
+            :class="{ 'Modal-switch--active': settings.moveToTop }"
+            @click="toggleSetting('moveToTop')"
+          ></div>
+          Move unfinished tasks to the top
         </div>
-      </div>
+        <div class="Modal-row">
+          <div 
+            class="Modal-switch"
+            :class="{ 'Modal-switch--active': settings.inputRounded }"
+            @click="toggleSetting('inputRounded')"
+          ></div>
+          Rounded input corners
+        </div>
+        <div class="Modal-row">
+          <div 
+            class="Modal-switch"
+            :class="{ 'Modal-switch--active': settings.itemsRounded }"
+            @click="toggleSetting('itemsRounded')"
+          ></div>
+          Rounded items corners
+        </div>
+        <div class="Modal-row">
+          Theme: 
+          <div @click="setTheme('#E91E63')" class="Rect Rect--pink"></div>
+          <div @click="setTheme('#009688')" class="Rect Rect--teal"></div>
+          <div @click="setTheme('#8BC34A')" class="Rect Rect--green"></div>
+          <div @click="setTheme('#FFC107')" class="Rect Rect--amber"></div>
+          <div @click="setTheme('#FF5722')" class="Rect Rect--orange"></div>
+          <div @click="setTheme('#222222')" class="Rect Rect--black"></div>
+          <div @click="setTheme('#311B92')" class="Rect Rect--purple"></div>
+        </div>
+      </modal>
+      
+      <modal header-text="Help" :visible="modals.help" @close="toggleModal('help')">
+        <p>Tap on todo entry to toggle its completion status.</p>
+        <p>Press shift and tap at the todo entry to remove it.</p>
+        <p>On mobile, press and hold a todo entry to remove it.</p>
+      </modal>
 
     </main>
     

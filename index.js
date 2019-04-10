@@ -1,3 +1,17 @@
+Vue.component('modal', {
+  props: ['headerText', 'visible'],
+  template: `
+    <div class="Modal" v-if="visible" @click.self="$emit('close')">
+      <div class="Modal-content">
+        <div class="Modal-header">{{ headerText }}</div>
+        <slot></slot>
+      </div>
+    </div>
+  `
+});
+
+
+
 let app = new Vue({
   el: '#app',
   data: {
@@ -5,7 +19,8 @@ let app = new Vue({
     items: [],
     modals: {
       settings: false,
-      help: false,      
+      help: false,
+      loki: true   
     },
     settings: {
       moveToBottom: true,
