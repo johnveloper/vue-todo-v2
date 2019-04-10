@@ -1,0 +1,2 @@
+# VueTodo V2
+Functionality the same as as in [VueTodo V1](https://github.com/johnveloper/vue-todo-v1), but significant change in code. I will learn and create reusable Vue components, from which the app will be composed of. Let's go.
