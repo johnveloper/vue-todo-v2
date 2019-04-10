@@ -33,15 +33,13 @@ let app = new Vue({
     items: [],
     modals: {
       settings: false,
-      help: false,
-      loki: true   
+      help: false 
     },
     settings: {
       moveToBottom: true,
       moveToTop: true,
       inputRounded: false,
-      itemsRounded: false,
-      elo: false
+      itemsRounded: false
     },
     timeout: null
   },
