@@ -38,19 +38,19 @@ let app = new Vue({
     settings: {
       moveToBottom: {
         label: 'Move finished tasks to the bottom',
-        state: true
+        state: false
       },
       moveToTop: {
         label: 'Move unfinished tasks to the top',
-        state: true
+        state: false
       },
       inputRounded: {
         label: 'Rounded input corners',
-        state: false
+        state: true
       },
       itemsRounded: {
         label: 'Rounded items corners',
-        state: false
+        state: true
       },
     },
     timeout: null
