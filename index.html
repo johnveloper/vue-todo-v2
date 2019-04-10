@@ -22,15 +22,11 @@
         </div>
       </header>
 
-      <input autofocus novalidate
+      <todo-input
         v-model="text"
-        @keydown.enter="addItem" 
-        class="Input"
-        :class="{ 'Input--rounded': settings.inputRounded.state }"
-        placeholder="Type here..." 
-        spellcheck="false"
-        autocomplete="off"
-      >
+        @enter="addItem"
+        rounded="settings.inputRounded.state"
+      ></todo-input>
 
       <div 
         v-for="item in items"

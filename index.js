@@ -1,3 +1,21 @@
+Vue.component('todo-input', {
+  props: ['value', 'rounded'],
+  template: `
+    <input
+      :value="value"
+      @input="$emit('input', $event.target.value)"
+      @keydown.enter="$emit('enter')" 
+      class="Input"
+      :class="{ 'Input--rounded': rounded }"
+      placeholder="Type here..." 
+      spellcheck="false"
+      autocomplete="off"
+      autofocus 
+      novalidate
+    >
+  `
+});
+
 Vue.component('modal', {
   props: ['headerText', 'visible'],
   template: `
