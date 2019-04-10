@@ -42,6 +42,23 @@ Vue.component('setting', {
   `
 });
 
+Vue.component('todo-item', {
+  props: ['done', 'rounded', 'shift'],
+  template: `
+    <div class="Item" :class="{ 
+        'Item--done': done, 
+        'Item--rounded': rounded,
+        'Item--deletable': shift
+      }"
+      @click="$emit('click')"
+      @touchstart="$emit('touchstart')"
+      @touchend="$emit('touchend')"
+    >
+      <slot></slot>
+    </div>
+  `
+});
+
 
 
 let app = new Vue({
@@ -97,9 +114,9 @@ let app = new Vue({
       }
       this.text = '';
     },
-    handleItemTap: function(id, event) {
+    handleItemTap: function(id) {
       const index = this.findIndexOfItemWithId(id);
-      if (event.shiftKey) {
+      if (this.shiftPressed) {
         this.removeItemAt(index);
       } else {
         let item = this.toggleItemAt(index);

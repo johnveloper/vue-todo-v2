@@ -28,18 +28,16 @@
         rounded="settings.inputRounded.state"
       ></todo-input>
 
-      <div 
+      <todo-item
         v-for="item in items"
-        @click="handleItemTap(item.id, $event)"
+        :key="item.id"
+        :done="item.done"
+        :rounded="settings.itemsRounded.state"
+        :shift="shiftPressed"
+        @click="handleItemTap(item.id)"
         @touchstart="handleItemTouchStart(item.id)"
         @touchend="handleItemTouchEnd"
-        class="Item"
-        :class="{ 
-          'Item--done': item.done, 
-          'Item--rounded': settings.itemsRounded.state,
-          'Item--deletable': shiftPressed
-        }"
-      >{{ item.text }}</div>
+      >{{ item.text }}</todo-item>
 
       <modal header-text="Settings" :visible="modals.settings" @close="toggleModal('settings')">
         
