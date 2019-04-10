@@ -10,6 +10,20 @@ Vue.component('modal', {
   `
 });
 
+Vue.component('setting', {
+  props: ['checked'],
+  template: `
+    <div class="Modal-row">
+      <div 
+        class="Modal-switch"
+        :class="{ 'Modal-switch--active': checked }"
+        @click="$emit('toggle')"
+      ></div>
+      <slot></slot>
+    </div>
+  `
+});
+
 
 
 let app = new Vue({
@@ -26,7 +40,8 @@ let app = new Vue({
       moveToBottom: true,
       moveToTop: true,
       inputRounded: false,
-      itemsRounded: false
+      itemsRounded: false,
+      elo: false
     },
     timeout: null
   },
